@@ -1,5 +1,3 @@
-
-
 Example Voting App
 =========
 
