@@ -3,7 +3,7 @@
 [![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
 
 
-[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
+[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/badge/icon?subject=worker)
 [![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
 [![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
 [![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
