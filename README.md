@@ -1,6 +1,6 @@
-[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-build&subject=WorkerBuild)](http://35.194.55.242:8080/job/instavote/job/worker-build/)
-[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-test)](http://35.194.55.242:8080/job/instavote/job/worker-test/)
-[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
+[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-build&subject=Worker-Build)](http://35.194.55.242:8080/job/instavote/job/worker-build/)
+[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-test&subject=Worker-Test)](http://35.194.55.242:8080/job/instavote/job/worker-test/)
+[![Build Status](http://35.194.55.242:8080/buildStatus/icon?job=instavote%2Fworker-package&subject=Worker-Package)](http://35.194.55.242:8080/job/instavote/job/worker-package/)
 
 Example Voting App
 =========
