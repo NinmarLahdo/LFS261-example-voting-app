@@ -209,7 +209,11 @@ pipeline {
 
 	    // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
             def voteImage = docker.build("nlahdo/vote:${env.GIT_COMMIT}", "./vote")
-          }
+            voteImage.push()
+
+
+
+	  }
 	 }
   	}
      }
