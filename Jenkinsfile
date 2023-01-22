@@ -206,7 +206,7 @@ pipeline {
 		script {
 		 docker.withRegistry('https://index.docker.io/v1/', 'Dockerhub') {
 
-		def voteImage = docker.build("nlahdo/vote:latest", "./vote")
+		def voteImage = docker.build("nlahdo/vote:v${env.GIT_COMMIT}", "./vote")
 		voteImage.push()
 		voteImage.push("${env.BRANCH_NAME}")
 		voteImage.push("latest")
