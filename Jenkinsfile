@@ -197,10 +197,24 @@ pipeline {
         sh 'sh integration_test.sh' 
       } 
     } 
-} 
+   } 
 
+	stage('vote-docker-package') {
+	 agent any
+	 steps {
+		echo 'Packaging vote app with docker'
+		script {
+		 docker.withRegistry('https://index.docker.io/v1/', 'Dockerhub') {
 
-
+		def voteImage = docker.build("nlahdo/vote:latest", "./vote")
+		voteImage.push()
+		voteImage.push("${env.BRANCH_NAME}")
+		voteImage.push("latest")
+	
+          }
+	 }
+  	}
+     }
 
     stage('deploy to dev') {
       agent any
