@@ -53,7 +53,7 @@ pipeline {
 
       }
       when {
-        branch 'master'
+        branch 'feature/monopipe/'
         changeset '**/worker/**'
       }
       steps {
@@ -70,7 +70,7 @@ pipeline {
       agent any
       when {
         changeset '**/worker/**'
-        branch 'master'
+        branch 'feature/monopipe'
       }
       steps {
         echo 'Packaging worker app with docker'
@@ -129,7 +129,7 @@ pipeline {
       agent any
       when {
         changeset '**/result/**'
-        branch 'master'
+        branch 'feature/monopipe'
       }
       steps {
         echo 'Packaging result app with docker'
@@ -189,7 +189,7 @@ pipeline {
     agent any 
     when{ 
       changeset "**/vote/**" 
-      branch 'master' 
+      branch 'feature/monopipe' 
     } 
     steps{ 
       echo 'Running Integration Tests on vote app' 
@@ -222,7 +222,7 @@ pipeline {
     stage('deploy to dev') {
       agent any
       when {
-        branch 'master'
+        branch 'feature/monopipe'
       }
       steps {
         echo 'Deploy instavote app with docker compose'
