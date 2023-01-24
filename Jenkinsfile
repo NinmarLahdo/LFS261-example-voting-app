@@ -53,7 +53,7 @@ pipeline {
 
       }
       when {
-        branch 'feature/monopipe/'
+        branch 'master'
         changeset '**/worker/**'
       }
       steps {
@@ -70,7 +70,7 @@ pipeline {
       agent any
       when {
         changeset '**/worker/**'
-        branch 'feature/monopipe'
+        branch 'master'
       }
       steps {
         echo 'Packaging worker app with docker'
@@ -129,7 +129,7 @@ pipeline {
       agent any
       when {
         changeset '**/result/**'
-        branch 'feature/monopipe'
+        branch 'master'
       }
       steps {
         echo 'Packaging result app with docker'
@@ -189,7 +189,7 @@ pipeline {
     agent any 
     when{ 
       changeset "**/vote/**" 
-      branch 'feature/monopipe' 
+      branch 'master' 
     } 
     steps{ 
       echo 'Running Integration Tests on vote app' 
@@ -197,7 +197,7 @@ pipeline {
         sh 'sh integration_test.sh' 
       } 
     } 
-   } 
+} 
 
 
     stage('vote-docker-package') {
@@ -206,27 +206,26 @@ pipeline {
         echo 'Packaging vote app with docker'
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'Dockerhub') {
-
-	    // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
-            def voteImage = docker.build("nlahdo/vote:${env.GIT_COMMIT}", "./vote")
+            // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
+            def voteImage = docker.build("nlahdo/vote:v${env.GIT_COMMIT}", "./vote")
             voteImage.push()
-	    voteImage.push("${env.GIT_COMMIT}")
-	    voteImage.push("latest")
+            voteImage.push("${env.GIT_COMMIT}")
+            voteImage.push("latest")
+          }i
+        }
 
+      }
+    }
 
-	  }
-	 }
-  	}
-     }
 
     stage('deploy to dev') {
       agent any
       when {
-        branch 'feature/monopipe'
+        branch 'master'
       }
       steps {
         echo 'Deploy instavote app with docker compose'
-        sh 'docker-compose down'
+        sh 'docker-compose up -d'
       }
     }
     
