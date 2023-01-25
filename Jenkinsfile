@@ -153,7 +153,7 @@ pipeline {
 
       }
       when {
-        changeset '**/vote/**'
+        branch 'master'
       }
       steps {
         echo 'Compiling vote app.'
