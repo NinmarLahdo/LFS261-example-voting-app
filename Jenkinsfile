@@ -207,48 +207,16 @@ pipeline {
         script {
           docker.withRegistry('https://index.docker.io/v1/', 'Dockerhub') {
             // ./vote is the path to the Dockerfile that Jenkins will find from the Github repo
-            def voteImage = docker.build("nlahdo/vote:${env.GIT_COMMIT}", "./vote")
+            def voteImage = docker.build("nlahdo/vote:v${env.GIT_COMMIT}", "./vote")
             voteImage.push()
             voteImage.push("${env.GIT_COMMIT}")
             voteImage.push("latest")
-          }
+          }i
         }
 
       }
     }
 
-
-   stage('Sonarqube') {
-      agent any
-      when{
-        branch 'master'
-      }
-      // tools {
-       // jdk "JDK11" // the name you have given the JDK installation in Global Tool Configuration
-     // }
-
-      environment{
-        sonarpath = tool 'SonarScanner'
-      }
-
-      steps {
-            echo 'Running Sonarqube Analysis..'
-            withSonarQubeEnv('sonar-instavote') {
-              sh "${sonarpath}/bin/sonar-scanner -Dproject.settings=sonar-project.properties -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.HEARTBEAT_CHECK_INTERVAL=86400"
-            }
-      }
-    }
-
-
-    stage("Quality Gate") {
-        steps {
-            timeout(time: 1, unit: 'HOURS') {
-                // Parameter indicates whether to set pipeline to UNSTABLE if Quality Gate fails
-                // true = set pipeline to UNSTABLE, false = don't
-                waitForQualityGate abortPipeline: true
-            }
-        }
-    }
 
     stage('deploy to dev') {
       agent any
@@ -262,10 +230,14 @@ pipeline {
     }
     
   }
-  
-  post {
-    always {
-      echo 'Building mono pipeline for voting app is completed.'
-    }
-  }
+        post{
+                always{
+                        echo 'Building multibranch pipeline for worker is completed..'
+                        }
+                failure{
+                slackSend (channel: "instavote-cd", message: "Build Failed - ${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)") }
+                success{
+                slackSend (channel: "instavote-cd", message: "Build Succeeded -${env.JOB_NAME} ${env.BUILD_NUMBER} (<${env.BUILD_URL}|Open>)")
+                }
+        }
 }
