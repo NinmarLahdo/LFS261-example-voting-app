@@ -211,7 +211,7 @@ pipeline {
             voteImage.push()
             voteImage.push("${env.GIT_COMMIT}")
             voteImage.push("latest")
-          }i
+          }
         }
 
       }
